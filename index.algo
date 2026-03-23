@@ -1,0 +1,53 @@
+ALGORITHM SENTENCE
+VAR
+    c : CHAR        // Stores the current character being processed
+    length : INTEGER // Counter for total characters
+    vowels : INTEGER // Counter for 'a', 'e', 'i', 'o', 'u'
+    words : INTEGER  // Counter for words based on spaces
+BEGIN
+    // Initialize counters to zero
+    length := 0
+    vowels := 0
+    words := 0
+
+    // Read the first character before entering the loop
+    READ c
+
+    // Loop continues until a period '.' is encountered
+    WHILE c != '.' DO
+        length := length + 1 // Increment total character count
+        
+        // If the character is a space, we've reached the end of a word
+        IF c = ' ' THEN
+            words := words + 1
+        ENDIF
+        
+        // Check if the character is a vowel (handles both cases)
+        IF c IN ['a','e','i','o','u','A','E','I','O','U'] THEN
+            vowels := vowels + 1
+        ENDIF
+        
+        // Get the next character for the next iteration
+        READ c
+    ENDWHILE
+
+    // Final adjustments after the loop stops at the period
+    length := length + 1 // Include the period in the total length
+    words := words + 1  // Count the very last word (the one before the period)
+    
+
+    // Output the final results
+    PRINT "Length of the sentence: ", length
+    PRINT "Number of words: ", words
+    PRINT "Number of vowels: ", vowels
+
+END
+
+/* INPUT: 
+"The quick brown fox jumps over the lazy dog."
+
+OUTPUT:
+Length of the sentence: 45
+Number of words: 9
+Number of vowels: 11
+*/
